@@ -1,3 +1,4 @@
+[//]: # SPDX-License-Identifier: Apache-2.0
 # MasterToMain
 
 MasterToMain is a script to help you change your branch name and all references from master to main.
