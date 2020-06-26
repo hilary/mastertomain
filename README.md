@@ -4,8 +4,10 @@ MasterToMain is a script to help you change your branch name and all references 
 
 ## Background
 
-The master-slave is an outdated and offensive metaphor and does not have a place in modern technology. Arguments can be made that the master branch references a master copy relationship, but [evidence](
-https://github.com/bitkeeper-scm/bitkeeper/blob/master/doc/HOWTO.ask#L223 "bitkeeper reference") points to the contrary. In either case empathy is important and if changing one term is less harmful, let's do it.
+The master-slave metaphor is outdated and offensive and does not have a place in modern technology. 
+Arguments have been made that the master branch references a master copy relationship, but [evidence](
+https://github.com/bitkeeper-scm/bitkeeper/blob/master/doc/HOWTO.ask#L223 "bitkeeper reference") points to the contrary. 
+In either case empathy is important and if changing one term is less harmful, let's do it.
 
 ## Instructions
 
@@ -15,13 +17,20 @@ The easiest way to do this is to copy this script into your local repo, and run:
 $ bash mastertomain.sh
 ```
 
-The script will automatically create a new branch called 'main' it will then delete your local master branch and check for any references of the word 'master'.
+What the script does, step by step:
 
-If references are found it provides an interactive interface to automatically update the references.
+1. Automatically creates a new branch `main`
+1. Checks for any references to the word 'master'
+   * If it finds references, provides an interactive interface to automatically update the references and commit any accepted changes.
+1. Prompts you to:
+   1. update any branch protections
+   1. update external dependencies
+   1. change your default branch from `master` to `main` on Github
+1. Finally, deletes `master` locally and at Github.
 
-After you have updated all the references the script will prompt you to update any branch protections, external dependencies, and lastly to change your default branch from master to 'main'.
+## What if I want to call the branch something else?
 
-After that it will delete your remote master branch, and thats it you're all done!
+To call the branch something else, use the environment variable `MAIN`: `MAIN=dev bash mastertomain.sh`
 
 ## Additional Information
 
