@@ -44,6 +44,7 @@ if find_master; then
   echo "for you to review and accept or deny. Please review them carefully, because I will commit the changes"
   echo "you accept. Hit enter to continue"
   echo ""
+  read -r
   for filename in $(find . -type f -name "*" ! -path './.git/*' ! -name 'mastertomain.sh' ! -path './vendor/*'); do 
     vim -c "%s/master/${MAIN}/gc" -c "wq" "${filename}"; 
   done
@@ -52,6 +53,7 @@ if find_master; then
   echo ""
   echo "Committing changes..."
   git add .
+  git restore --staged mastertomain.sh
   git commit -m "convert master to ${MAIN}"
   echo "done"
   echo ""
