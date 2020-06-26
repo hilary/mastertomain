@@ -59,13 +59,20 @@ git push --set-upstream origin main
 echo "done"
 echo ""
 
-echo "Go to your repo on github or github.internal. Under settings => branches, update any branch protections. Hit enter to continue."
+echo "Now I'm going to walk you through a series of manual steps, after I'll do a last few scripted steps."
+echo ""
+echo "I have opened a pull request for 'main’."
+echo "Go to your repo on GitHub and merge the changes. Hit enter to continue"
 read -r
-echo "Update any external dependencies, i.e., concourse. Hit enter to continue."
+echo "Still on Github, under settings => branches, update any branch protections. Hit enter to continue."
 read -r
-echo "Go to your repo on github or github.internal. Under settings => branches, update the default branch to 'main'."
+echo "Update any *external* dependencies, e.g, concourse. Hit enter to continue."
+read -r
+echo "Back on Github under settings => branches, update the default branch to 'main'. Hit enter to continue."
 read -r
 
 echo "Deleting master (drumroll please!)..."
 delete_master
-echo "done"
+echo "done!"
+echo ""
+echo "Thanks for making your project a safer and more inclusive environment."
