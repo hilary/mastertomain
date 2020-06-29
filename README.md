@@ -11,7 +11,11 @@ In either case empathy is important and if changing one term is less harmful, le
 
 ## Instructions
 
-The easiest way to do this is to copy this script into your local repo, and run:
+You may want to take a few minutes to clean up your repo before running `mastertomain`. We've done a fair bit
+of hardening against common situations (e.g., open pull requests), but a clean repo is a happy repo.
+
+The script currently assumes that you are running it from a local clone of a git repo on `ORIGIN`. Copy this script into
+your local clone, and run it:
 
 ```
 $ bash mastertomain.sh
@@ -24,6 +28,7 @@ What the script does, step by step:
    * If it finds references, provides an interactive interface to automatically update the references and commit any accepted changes.
 1. Prompts you to:
    1. update any branch protections
+   1. update any *open* pull requests to use `main` as the base rather than `master`
    1. update external dependencies
    1. change your default branch from `master` to `main` on Github
 1. Finally, deletes `master` locally and at Github.

@@ -4,28 +4,33 @@
 
 set -eu
 
-function create_main {
+function create_main() {
   echo "creating ${MAIN}..."
   git checkout master
   git pull origin master
-  git checkout -b "${MAIN}"  
+  git checkout -b "${MAIN}"
   echo "done"
   echo ""
 }
 
-function find_master {
+function find_master() {
   git grep -w -q master
 }
 
-function delete_master {
+function delete_master() {
   git pull
   git branch -d master
   git push origin :master
 }
 
-if git status porcelain; then
-  true
-else
+git checkout master
+function is_dirty() {
+  git add .
+  git restore --staged mastertomain.sh
+  ! git diff-index --quiet HEAD
+}
+
+if is_dirty; then
   echo "Hey! I found uncommitted changes in your repo. Please commit/stage/nuke your changes and try again."
   exit 1
 fi
@@ -47,16 +52,19 @@ if find_master; then
   echo "you accept. Hit enter to continue"
   echo ""
   read -r
-  for filename in $(find . -type f -name "*" ! -path './.git/*' ! -name 'mastertomain.sh' ! -path './vendor/*'); do 
-    vim -c "%s/master/${MAIN}/gc" -c "wq" "${filename}"; 
+  # shellcheck disable=SC2044
+  for filename in $(find . -type f -name "*" ! -path './.git/*' ! -name 'mastertomain.sh' ! -path './vendor/*'); do
+    vim -c "%s/master/${MAIN}/gc" -c "wq" "${filename}"
   done
   echo ""
   echo "Phew! All done!"
   echo ""
-  echo "Committing changes..."
-  git add .
-  git restore --staged mastertomain.sh
-  git commit -m "convert master to ${MAIN}"
+  if is_dirty; then
+    echo "Committing changes..."
+    git commit -m "convert master to ${MAIN}"
+  else
+    echo "No changes made."
+  fi
   echo "done"
   echo ""
 fi
@@ -69,6 +77,8 @@ echo "Now I'm going to walk you through a series of manual steps, after I'll do 
 echo ""
 
 echo "Go to your repo on GitHub. Under settings => branches, update any branch protections. Hit enter to continue."
+read -r
+echo "Still on GitHub, look under Pull requests. Update any open pull requests to use ${MAIN} as the base. Hit enter to continue."
 read -r
 echo "Update any *external* dependencies, e.g, concourse. Hit enter to continue."
 read -r
