@@ -39,3 +39,11 @@ https://www.kapwing.com/blog/how-to-rename-your-master-branch-to-main-in-git/ "K
 
 [history of master in git](
 https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html "Gnome Archive") - a collection of articles relating to the history of git and the use of the term master within it.
+
+## Authors
+
+Created by [Brandon Strittmatter](https://github.com/stritt) and [Hilary Holz](https://github.com/hilary)
+
+## Acknowledgments
+
+MasterToMain won the 2020 Q3 SharkaHack, [DigitalOcean's](https://digitalocean.com/) quarterly internal hackathon. 
