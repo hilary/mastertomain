@@ -51,4 +51,4 @@ Created by [Brandon Strittmatter](https://github.com/stritt) and [Hilary Holz](h
 
 ## Acknowledgments
 
-MasterToMain won the 2020 Q3 SharkaHack, [DigitalOcean's](https://digitalocean.com/) quarterly internal hackathon. 
+MasterToMain won the 2020 Q2 SharkaHack, [DigitalOcean's](https://digitalocean.com/) quarterly internal hackathon. Thanks to DO for giving us the time to work on it!
